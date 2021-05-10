@@ -1,25 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import Routes from "./Routes";
+import Menu from "./Menu";
+import LandingPage from "./Menu";
+import PrimarySearchAppBar from "./PrimarySearchAppBar";
+import CustomLinkExample from "./CustomLinkExample";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <div>
+      {/* <Menu />       */}
+      {/* <PrimarySearchAppBar />
+      <Routes />       */}
+      <CustomLinkExample />
+    </div>      
+  
+);
 
 export default App;
