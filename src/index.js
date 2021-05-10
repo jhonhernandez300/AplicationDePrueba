@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import CustomLinkExample from './CustomLinkExample';
 
 ReactDOM.render(
   // <React.StrictMode>
-    <App />,
+    // <App />,
+    <CustomLinkExample />,
   // </React.StrictMode>,
   document.getElementById('root')
 );
