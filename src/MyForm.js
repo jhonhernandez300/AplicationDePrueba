@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import {
   makeStyles,
   Grid,
@@ -71,6 +71,7 @@ const MyForm = () => {
 function Password({ handleClose }) {
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
+  const [password, setPassword] = useState('');
 
   const onSubmit = data => {
     console.log(data);
