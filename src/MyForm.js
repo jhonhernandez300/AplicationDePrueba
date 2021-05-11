@@ -18,8 +18,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: theme.spacing(2),
-    height: '250px',
+    padding: theme.spacing(2),    
 
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -28,9 +27,6 @@ const useStyles = makeStyles(theme => ({
     '& .MuiButtonBase-root': {
       margin: theme.spacing(2),
     },
-  },
-  rootCard: {
-    minWidth: 275,
   },  
   title: {
     fontSize: 14,
@@ -65,7 +61,7 @@ const MyForm = () => {
             <Buy />            
           </Paper>
         </Grid>
-        
+
       </Grid>
     </div>
   );
@@ -186,7 +182,7 @@ function Buy({ handleClose }) {
 
     return (
       <div>
-        <Card className={classes.rootCard}>
+        <Card className={classes.root}>
           <CardContent>
             <Typography className={classes.title} gutterBottom>
               Configuración
