@@ -7,8 +7,7 @@ import CustomLinkExample from './CustomLinkExample';
 
 ReactDOM.render(
   // <React.StrictMode>
-    // <App />,
-    <CustomLinkExample />,
+    <App />,    
   // </React.StrictMode>,
   document.getElementById('root')
 );
