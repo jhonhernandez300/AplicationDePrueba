@@ -1,5 +1,12 @@
 import React from 'react';
-import { makeStyles, Grid, Paper } from '@material-ui/core';
+import {
+  makeStyles,
+  Grid,
+  Paper,
+  Card,
+  CardContent,
+  Typography
+} from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useForm, Controller } from 'react-hook-form';
@@ -12,28 +19,26 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing(2),
+    height: '250px',
 
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: '300px',
+      width: '250px',
     },
     '& .MuiButtonBase-root': {
       margin: theme.spacing(2),
     },
   },
-  forPaper: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16),
-    },
+  rootCard: {
+    minWidth: 275,
+  },  
+  title: {
+    fontSize: 14,
   },  
   grid: {
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.secondary,    
   },
 }));
 
@@ -42,21 +47,27 @@ const MyForm = () => {
 
   return (
     <div className={classes.root}>
-    <h2>Configuración</h2>
-    <br />
-    <Grid container spacing={24}>
-      <Grid className={classes.grid} item xs={6} sm={5}>
-        <Paper elevation={3} className={classes.paper}>
-          <Password />
-        </Paper>
+      <Grid container spacing={24}>
+
+        <Grid className={classes.grid} item xs={12}>
+          <Paper className={classes.paper}>
+            <TheCard />
+          </Paper>
+        </Grid>
+
+        <Grid className={classes.grid} item xs={6} sm={5}>
+          <Paper elevation={3} className={classes.paper}>
+            <Password />
+          </Paper>
+        </Grid>
+        <Grid className={classes.grid} item xs={6} sm={5}>
+          <Paper elevation={3} className={classes.paper}>
+            <Buy />            
+          </Paper>
+        </Grid>
+        
       </Grid>
-      <Grid className={classes.grid} item xs={6} sm={5}>
-        <Paper elevation={3} className={classes.paper}>
-          <Buy />
-        </Paper>
-      </Grid>
-    </Grid>
-  </div>
+    </div>
   );
 };
 
@@ -128,34 +139,13 @@ function Buy({ handleClose }) {
     <div>
       <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          name="firstName"
-          control={control}
-          defaultValue=""
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <TextField
-              label="First Name"
-              variant="filled"
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-            />
-          )}
-          rules={{ required: 'First name required' }}
-        />
-        <Controller
           name="lastName"
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <TextField
-              label="Last Name"
-              variant="filled"
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-            />
+            <Button type="button" variant="contained" color="primary">
+              Plan Bronze
+            </Button>
           )}
           rules={{ required: 'Last name required' }}
         />
@@ -164,15 +154,9 @@ function Buy({ handleClose }) {
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <TextField
-              label="Email"
-              variant="filled"
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-              type="email"
-            />
+            <Button type="button" variant="contained" color="primary">
+              Plan Plata
+            </Button>
           )}
           rules={{ required: 'Email required' }}
         />
@@ -181,29 +165,37 @@ function Buy({ handleClose }) {
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <TextField
-              label="Password"
-              variant="filled"
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-              type="password"
-            />
+            <Button type="button" variant="contained" color="primary">
+              Plan Oro
+            </Button>
           )}
           rules={{ required: 'Password required' }}
         />
         <div>
-          <Button variant="contained" onClick={handleClose}>
-            Cancel
-        </Button>
           <Button type="submit" variant="contained" color="primary">
-            Signup
+            Comprar
         </Button>
         </div>
       </form>
     </div>
   );
+ }
+
+  function TheCard() {    
+    const classes = useStyles();
+
+    return (
+      <div>
+        <Card className={classes.rootCard}>
+          <CardContent>
+            <Typography className={classes.title} gutterBottom>
+              Configuración
+            </Typography>
+          </CardContent>
+        </Card>
+      </div>
+    );
 }
 
-export default MyForm;
+
+  export default MyForm;
