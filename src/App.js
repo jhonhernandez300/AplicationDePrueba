@@ -6,14 +6,18 @@ import LandingPage from "./Menu";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import CustomLinkExample from "./CustomLinkExample";
 import MyForm from "./MyForm";
+import Password2 from './Password2';
+import BotonesValidar from './BotonesValidar';
 
 const App = () => (
     <div>
-      {/* <Menu />       */}
+      <Menu />      
       {/* <PrimarySearchAppBar />
       <Routes />       */}
       {/* <CustomLinkExample /> */}
-      <MyForm />
+      {/* <MyForm /> */}
+      {/* <Password2 /> */}
+      {/* <BotonesValidar /> */}
     </div>      
   
 );

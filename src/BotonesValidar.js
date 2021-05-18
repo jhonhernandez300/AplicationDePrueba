@@ -10,6 +10,7 @@ import {
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useForm, Controller } from 'react-hook-form';
+import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -71,105 +72,136 @@ const MyForm = () => {
 function Password({ handleClose }) {
   const classes = useStyles();
   const { handleSubmit, control } = useForm();
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const [messageError, setMessageError] = useState("");
+  const [primerPassword, setPrimerPassword] = useState("");
+  const [segundoPassword, setSegundoPassword] = useState("");
+  
+  const onChangePrimerPassword = (event) => {
+    setPrimerPassword(event.target.value);
+  };
+
+  const onChangeSegundoPassword = (event) => {
+    setSegundoPassword(event.target.value);
+  };
 
   const onSubmit = data => {
-    if(this.password !== this.repeatPassword){
-      console.log("inválido");				
-		} else {
-			console.log("válido");			
-		}
-
-    //console.log(data);
+    if(primerPassword.length >= 8){
+      if(primerPassword === segundoPassword){
+        console.log("iguales");
+      }else {
+        console.log("diferentes");
+      }
+    }else{
+      console.log("contraseña muy corta");
+    }
+   
   };
 
   return (
     <div>
-      <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="password"
-          control={control}
-          defaultValue=""
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <TextField
-              label="Password"
-              variant="filled"
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-              type="password"
-            />
-          )}
-          rules={{ required: 'Password required' }}
-        />
-        <Controller
-          name="repeatPassword"
-          control={control}
-          defaultValue=""
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <TextField
-              label="Repetir Password"
-              variant="filled"
-              value={value}
-              onChange={onChange}
-              error={!!error}
-              helperText={error ? error.message : null}
-              type="password"
-            />
-          )}
-          rules={{ required: 'Password required' }}
-        />
-           <Typography className={classes.messageError} variant="subtitle1">
-              {messageError}
-            </Typography>
-        <div>
-          <Button type="submit" variant="contained" color="primary">
+      <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <Input 
+        defaultValue="Hello world" 
+        inputProps={{ 'aria-label': 'description' }} 
+        onChange={onChangePrimerPassword}
+      />
+      <Input 
+        placeholder="Placeholder" 
+        inputProps={{ 'aria-label': 'description' }} 
+        onChange={onChangeSegundoPassword}
+      />      
+      <div>
+        <Button type="submit" variant="contained" color="primary">
             Actualizar contraseña
         </Button>
-        </div>
-      </form>
+      </div>
+    </form>      
     </div>
   );
 }
 
 function Buy({ handleClose }) {
   const classes = useStyles();
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm();  
+  const [activarComprar, setActivarComprar] = useState(true);
+  const [activarPrimerBoton, setActivarPrimerBoton] = useState(false);
+  const [activarSegundoBoton, setActivarSegundoBoton] = useState(false);
+
+  const onChangePrimerPassword = () => {
+    //console.log('onClick');
+    setActivarComprar(false);
+    setActivarSegundoBoton(true);
+  };
 
   const onSubmit = data => {
     console.log(data);
-  };
+  };  
+  
 
   return (
     <div>
-      <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
+      <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <Button 
+        type="button"        
+        color="primary"
+        variant="contained" 
+        onClick={onChangePrimerPassword}
+        //onClick={() => { console.log('onClick'); }}
+        disabled={activarPrimerBoton}
+      >
+        Plan Bronze
+      </Button>
+      <Button 
+        type="button"     
+        color="primary"
+        variant="contained" 
+        //onclick={onChangeSegundoPassword}
+        disabled={activarSegundoBoton}
+      >         
+        Plan Plata        
+      </Button> 
+      <div>
+        <Button 
+          type="submit" 
+          variant="contained" 
+          color="primary"
+          disabled={activarComprar}>
+            Actualizar contraseña
+        </Button>
+      </div>
+    </form>    
+
+      {/* <form className={classes.root} onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          name="lastName"
+          name="bronze"
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <Button type="button" variant="contained" color="primary">
+            <Button type="button" 
+                variant="contained" 
+                color="primary"
+                //onClick={this.activar}                
+                onClick={() => setActivarComprar('true')}
+            >
               Plan Bronze
             </Button>
           )}
           rules={{ required: 'Last name required' }}
         />
         <Controller
-          name="email"
+          name="plata"
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <Button type="button" variant="contained" color="primary">
+            <Button type="button" 
+              variant="contained" 
+            color="primary">
               Plan Plata
             </Button>
           )}
           rules={{ required: 'Email required' }}
         />
         <Controller
-          name="password"
+          name="oro"
           control={control}
           defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -180,11 +212,17 @@ function Buy({ handleClose }) {
           rules={{ required: 'Password required' }}
         />
         <div>
-          <Button type="submit" variant="contained" color="primary">
+          <Button 
+            name="comprar"
+            type="submit" 
+            variant="contained" 
+            color="primary"
+            disabled={activarComprar}            
+          >
             Comprar
         </Button>
         </div>
-      </form>
+      </form> */}
     </div>
   );
  }
