@@ -16,7 +16,7 @@ const Routes = () => {
   return (
     <Router>
         <Switch>
-          <Route path='/Configuration' component={Configuration} />
+          <Route path='./Configuration' component={Configuration} />
           <Route path='/index' component={App} />
         </Switch>
       </Router>

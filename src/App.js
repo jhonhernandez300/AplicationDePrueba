@@ -11,10 +11,10 @@ import BotonesValidar from './BotonesValidar';
 
 const App = () => (
     <div>
-      <Menu />      
-      {/* <PrimarySearchAppBar />
-      <Routes />       */}
-      {/* <CustomLinkExample /> */}
+      {/* <Menu />       */}
+      {/* <PrimarySearchAppBar /> */}
+      <Routes />      
+      <CustomLinkExample />
       {/* <MyForm /> */}
       {/* <Password2 /> */}
       {/* <BotonesValidar /> */}
